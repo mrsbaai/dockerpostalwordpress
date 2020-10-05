@@ -1,110 +1,11 @@
 #!/bin/sh
 domain=$1;
 password=$2;
-frenomlogin=$3;
-frenompass=$4;
+############""
 
-# freenom install
-apt-get update;
-apt install git -y;
-git clone https://github.com/dawierha/Freenom-dns-updater.git;
-cd Freenom-dns-updater;
-apt-get install -y software-properties-common;
-add-apt-repository -y ppa:deadsnakes/ppa;
-apt-get update;
-apt-get install -y python3-setuptools;
-apt-get install -y python3.6;
-python3 setup.py install;
-
-
-echo "
-login: $3
-password: $4
-
-# list here the records you want to add/update
-record:
-  # the following will update both the A and AAAA records with your current ips (v4 and v6).
-  # Note that if you don't have a ipv6 connection, the program'll detect it and will only update the A record (ipv4)
-  - domain: $1
-
-  # the following will update both your subdomain's A and AAAA records with your current ips (v4 and v6)
-  - domain: $1
-    name: www
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: click
-    type: CNAME
-    target: track.postal.$1 # you can omit this line
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: postal
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: rp.postal
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: spf.postal
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: track.postal
-    
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: selenoid
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: 
-    type: TXT
-    target: v=spf1 a mx include:spf.postal.$1 ~all # you can omit this line
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: rp.postal
-    type: TXT
-    target: v=spf1 a mx include:spf.postal.$1 ~all # you can omit this line
-    
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: POSTAL-RO9MOV._DOMAINKEY
-    type: TXT
-    target: v=DKIM1; t=s; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGCaSFpYj86cSSJpyQhs505MGoPdtfvgBryr2jlRppEQfJXkEP8uG39iLDvoLogyHNaYzsbVJL/3HBb80fnTxlYA454WMUZ0ndnnQ9Ue9AGA3Sd7tVPqaRyX0epZ2zA2/Yy+CJ5nEebt6apeUyGCGyiw+uRvnx/o0KzKk8uGPgTQIDAQAB; # you can omit this line
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: psrp
-    type: CNAME
-    target: rp.postal.$1 # you can omit this line
-    
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: _DMARC
-    type: TXT
-    target: v=DMARC1; p=quarantine; rua=mailto:abuse@$1 # you can omit this line
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name:
-    type: MX
-    target: postal.$1 # you can omit this line
-    priority: 10
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
-    name: routes.postal
-    type: MX
-    target: postal.$1 # you can omit this line
-    priority: 10
-"> /etc/freenom.yml;
-fdu process -c -i -t 3600 /etc/freenom.yml&
-
-sleep 600
-
+# Make your DNS
+#
+#
 # This will install everything required to run a basic Postal installation.
 # This should be run on a clean Ubuntu 16.04 server.
 #
@@ -177,8 +78,8 @@ gem install bundler procodile --no-rdoc --no-ri;
 # MySQL
 #
 echo 'CREATE DATABASE `postal` CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;' | mysql -u root;
-echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "LFr37rG3r";' | mysql -u root;
-echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "LFr37rG3r";' | mysql -u root;
+echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "SQLPASSHERE";' | mysql -u root;
+echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "SQLPASSHERE";' | mysql -u root;
 
 #
 # RabbitMQ
