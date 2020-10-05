@@ -161,7 +161,6 @@ service nginx restart;
 # install docker
 #
 
-
 # This will install everything required to run a basic Postal installation.
 # This should be run on a clean Ubuntu 16.04 server.
 #
