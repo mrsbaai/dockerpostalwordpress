@@ -213,8 +213,7 @@ services:
       PROXY_READ_TIMEOUT: '900'
       CLIENT_MAX_BODY_SIZE: 300M
       DOMAINS: >-
-          $1 -> http://172.20.128.4,
-          www.$1 -> http://172.20.128.4,
+          $1 -> https://127.0.0.1:8443,
           track.postal.$1 -> https://127.0.0.1:9443,
           click.$1 -> https://127.0.0.1:9443,
           postal.$1 -> https://127.0.0.1:8443
