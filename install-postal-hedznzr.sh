@@ -118,7 +118,7 @@ service nginx reload
 
 
 cd /etc/systemd/system;
-curl -O https://raw.githubusercontent.com/layen67/docker-postal-ubuntu/master/postal.service;
+curl -O https://raw.githubusercontent.com/mrsbaai/docker-postal-ubuntu/master/postal.service;
 systemctl daemon-reload;
 systemctl enable postal;
 systemctl start postal;
@@ -328,7 +328,7 @@ sleep 5
 #
 chmod 777 /var/lib/docker/wordpress/wp-content;
 cd /etc/nginx/sites-available;
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast
+wget https://raw.githubusercontent.com/mrsbaai/dockerpostalwordpress/master/fast
 ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 
 #
@@ -336,7 +336,7 @@ ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 #
 cd /etc/nginx
 rm -rf /etc/nginx/nginx.conf
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/nginx.conf
+wget https://raw.githubusercontent.com/mrsbaai/dockerpostalwordpress/master/nginx.conf
 
 sed -i -e "s/yourdomain.com/$1/g" /etc/nginx/sites-available/fast;
 
@@ -364,7 +364,7 @@ service nginx restart;
 
 cd /etc/mysql;
 mv my.cnf mycnfold;
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/my.cnf;
+wget https://raw.githubusercontent.com/mrsbaai/dockerpostalwordpress/master/my.cnf;
 service mysql restart;
 
 command hostnamectl set-hostname $1;
