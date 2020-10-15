@@ -118,7 +118,7 @@ service nginx reload
 
 
 cd /etc/systemd/system;
-curl -O https://raw.githubusercontent.com/mrsbaai/master/postal.service;
+curl -O https://raw.githubusercontent.com/mrsbaai/postal.service;
 systemctl daemon-reload;
 systemctl enable postal;
 systemctl start postal;
